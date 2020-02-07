@@ -9,14 +9,14 @@ namespace HarryPotterApi.Models
     public class Hero : Personne
     {
         [Required]
-        public Epee Epee { get; set; }
+        public int EpeeId { get; set; }
 
         public Hero(): base() { }
 
-        public Hero(int id, string nom, int pointsDeVie, Epee epee):
-            base(id, nom, pointsDeVie)
+        public Hero(int id, string nom, String avatar, int pointsDeVie, int epeeId):
+            base(id, nom, avatar, pointsDeVie)
         {
-            this.Epee = epee;
+            this.EpeeId = epeeId;
         }
 
         public override void Attaquer(Personne cible)

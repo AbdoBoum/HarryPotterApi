@@ -12,14 +12,14 @@ namespace HarryPotterApi.Models
         public int Niveau { get; set; }
 
         [Required]
-        public Gourdin Gourdin { get; set; }
+        public int GourdinId { get; set; }
 
         public Monster() : base() { }
 
-        public Monster(int id, string nom, int pointsDeVie, Gourdin gourdin) :
-            base(id, nom, pointsDeVie)
+        public Monster(int id, string nom, int pointsDeVie, String avatar, int gourdinId) :
+            base(id, nom, avatar, pointsDeVie)
         {
-            this.Gourdin = gourdin;
+            this.GourdinId = gourdinId;
         }
 
         public override void Attaquer(Personne cible)

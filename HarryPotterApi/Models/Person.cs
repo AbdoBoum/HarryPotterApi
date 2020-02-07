@@ -26,11 +26,14 @@ namespace HarryPotterApi.Models
 
         public Personne() { }
 
-        public Personne(int id, string nom, int pointsDeVie)
+        public Personne(int id, string nom, String avatar, int pointsDeVie)
         {
             this.Id = id;
             this.Nom = nom;
             this.PointsDeVie = pointsDeVie;
+            this.Avatar = avatar;
+            this.PositionX = 0;
+            this.PositionY = 0;
         }
 
 

@@ -114,6 +114,10 @@
     <Compile Include="Migrations\202001310003174_Monster.designer.cs">
       <DependentUpon>202001310003174_Monster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002062059243_v2.cs" />
+    <Compile Include="Migrations\202002062059243_v2.designer.cs">
+      <DependentUpon>202002062059243_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Arme.cs" />
     <Compile Include="Models\Epee.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001310003174_Monster.resx">
       <DependentUpon>202001310003174_Monster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002062059243_v2.resx">
+      <DependentUpon>202002062059243_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
