@@ -10,8 +10,8 @@ namespace HarryPotterApi
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableSystemDiagnosticsTracing();
             // Configuration et services API Web
-
             // Itinéraires de l'API Web
             config.MapHttpAttributeRoutes();
 

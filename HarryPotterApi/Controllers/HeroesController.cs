@@ -19,9 +19,9 @@ namespace HarryPotterApi.Controllers
         private HarryPotterApiContext db = new HarryPotterApiContext();
 
         // GET: api/Heroes
-        public IQueryable<Hero> GetHeroes()
+        public object GetHeroes()
         {
-            return db.Heroes;
+            return new { heroes = db.Heroes.ToList() };
         }
 
         // GET: api/Heroes/5
