@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Tracing;
 using Newtonsoft.Json.Linq;
+using HarryPotterApi.Services;
 
 namespace HarryPotterApi.Controllers
 {
@@ -18,8 +19,11 @@ namespace HarryPotterApi.Controllers
         
         private HarryPotterApiContext db = new HarryPotterApiContext();
         static List<Monster> monsterList = new List<Monster>();
-         static Models.Hero myHero;
+        static List<Gourdin> gourdinList = new List<Gourdin>();
+        static Hero myHero;
+        static Epee myEpee;
         static List<Obstacle> obstacleList = new List<Obstacle>();
+       
 
        
 
@@ -30,12 +34,14 @@ namespace HarryPotterApi.Controllers
         {
             return new
             {
+                hero = myHero,
+                epee = myEpee,
                 monsters = monsterList,
-                hero = myHero
-               
+                gourdins = gourdinList,
+                obstacles = obstacleList
             };
-           
-            
+
+
         }
 
 
@@ -47,11 +53,18 @@ namespace HarryPotterApi.Controllers
         {
             int id = request["id"].ToObject<int>();       
             myHero = await db.Heroes.FindAsync(id);
+            myEpee = await db.Epees.FindAsync(myHero.EpeeId);
+
             if (myHero == null)
             {
                 return BadRequest();
             }
             monsterList = db.Monsters.ToList();
+            foreach(Monster m in monsterList)
+            {
+                gourdinList.Add(await db.Gourdins.FindAsync(m.GourdinId));
+
+            }
             return Ok(myHero);
         }
 
@@ -64,15 +77,29 @@ namespace HarryPotterApi.Controllers
         public void Delete(int id)
         {
         }
+
+       
+
         [Route("api/game/fintour")]
         public object PostFinTour(JObject request)
         {
             
-            
-            
-            
-            
-            return null;
+            int xHero = request["hero"]["x"].ToObject<int>();
+
+            int yHero = request["hero"]["y"].ToObject<int>();
+
+            int xAttack = request["attack"]["x"].ToObject<int>();
+
+            int yAttack = request["attack"]["y"].ToObject<int>();
+
+            Tuple<int, int> heroLastPosition = new Tuple<int, int>(xHero, yHero);
+
+            Tuple<int, int> attackPosition = new Tuple<int, int>(xAttack, yAttack);
+
+            //x.x;
+            GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
+
+            return new { coo = 5 };
         }
 
        

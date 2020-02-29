@@ -22,7 +22,7 @@ namespace HarryPotterApi.Models
         public int PositionX { get; private set; }
 
         [Required]
-        public int PointsDeVie { get; private set; }
+        public int PointsDeVie { get; protected set; }
 
         public Personne() { }
 
@@ -45,9 +45,9 @@ namespace HarryPotterApi.Models
 
         public virtual void Attaquer(Personne cible)
         {
-            cible.RecevoirDegats(this);
+            //cible.RecevoirDegats(this);
         }
 
-        public abstract void RecevoirDegats(Personne source);
+        public abstract bool RecevoirDegats(Arme source);
     }
 }

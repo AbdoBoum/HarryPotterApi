@@ -21,7 +21,7 @@ namespace HarryPotterApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var cors = new EnableCorsAttribute("http://localhost:8080", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
             config.EnableCors(cors);
 
         }

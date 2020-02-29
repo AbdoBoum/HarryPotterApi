@@ -27,9 +27,14 @@ namespace HarryPotterApi.Models
         base.Attaquer(cible);
     }
 
-    public override void RecevoirDegats(Personne source)
+    public override bool RecevoirDegats(Arme source)
         {
-            throw new NotImplementedException();
+            this.PointsDeVie -= source.Degats;
+            if (this.PointsDeVie <= 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

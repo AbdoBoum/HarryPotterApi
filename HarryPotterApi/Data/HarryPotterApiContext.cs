@@ -26,5 +26,6 @@ namespace HarryPotterApi.Data
         public System.Data.Entity.DbSet<HarryPotterApi.Models.Gourdin> Gourdins { get; set; }
 
         public System.Data.Entity.DbSet<HarryPotterApi.Models.Monster> Monsters { get; set; }
+
     }
 }

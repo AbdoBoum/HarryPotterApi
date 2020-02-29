@@ -24,9 +24,15 @@ namespace HarryPotterApi.Models
             base.Attaquer(cible);
         }
 
-        public override void RecevoirDegats(Personne source)
+        public override bool RecevoirDegats(Arme source)
         {
-            Console.WriteLine("Je suis attaqué par " + source.Nom);
+            Console.WriteLine("Je suis attaqué. J'ai pris " + source.Degats);
+            this.PointsDeVie -= source.Degats;
+            if (this.PointsDeVie <= 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
