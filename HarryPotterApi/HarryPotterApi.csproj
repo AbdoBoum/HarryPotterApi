@@ -126,6 +126,10 @@
     <Compile Include="Migrations\202002062059243_v2.designer.cs">
       <DependentUpon>202002062059243_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002292232312_AddObstacleTable.cs" />
+    <Compile Include="Migrations\202002292232312_AddObstacleTable.designer.cs">
+      <DependentUpon>202002292232312_AddObstacleTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Arme.cs" />
     <Compile Include="Models\Epee.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002062059243_v2.resx">
       <DependentUpon>202002062059243_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002292232312_AddObstacleTable.resx">
+      <DependentUpon>202002292232312_AddObstacleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

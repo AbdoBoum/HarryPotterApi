@@ -55,16 +55,19 @@ namespace HarryPotterApi.Controllers
             myHero = await db.Heroes.FindAsync(id);
             myEpee = await db.Epees.FindAsync(myHero.EpeeId);
 
+
             if (myHero == null)
             {
                 return BadRequest();
             }
             monsterList = db.Monsters.ToList();
+
             foreach(Monster m in monsterList)
             {
                 gourdinList.Add(await db.Gourdins.FindAsync(m.GourdinId));
 
             }
+            obstacleList = db.Obstacle.ToList();
             return Ok(myHero);
         }
 
