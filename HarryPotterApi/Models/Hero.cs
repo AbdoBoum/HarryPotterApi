@@ -11,6 +11,10 @@ namespace HarryPotterApi.Models
         [Required]
         public int EpeeId { get; set; }
 
+        public string Description { get; set; }
+
+        public string IGAvatar { get; set; }
+
         public Hero(): base() { }
 
         public Hero(int id, string nom, String avatar, int pointsDeVie, int epeeId):
@@ -23,6 +27,8 @@ namespace HarryPotterApi.Models
         {
             base.Attaquer(cible);
         }
+
+        
 
         public override bool RecevoirDegats(Arme source)
         {
