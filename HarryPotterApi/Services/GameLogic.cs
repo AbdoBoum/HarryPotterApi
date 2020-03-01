@@ -40,7 +40,8 @@ namespace HarryPotterApi.Services
             
             for(int i = monsterList.Count-1;i>=0;i--)
             {
-                double distance = Math.Abs( Math.Sqrt(Math.Pow(attackPosition.Item1, 2) + Math.Pow(attackPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
+                double distance = Math.Sqrt(Math.Pow(attackPosition.Item1 - monsterList[i].PositionX, 2) + Math.Pow(attackPosition.Item2 - monsterList[i].PositionY, 2));
+                //double distance = Math.Abs( Math.Sqrt(Math.Pow(attackPosition.Item1, 2) + Math.Pow(attackPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
                 if (distance <= myEpee.Portee)
                 {
                     sb.AppendFormat("Vous avez infligé {1} points de dégats à {2}.",myHero.Nom,myEpee.Degats,monsterList[i].Nom);
@@ -69,7 +70,8 @@ namespace HarryPotterApi.Services
             {
                 if (gourdinList[i].Degats != 0)
                 {
-                    double distance = Math.Abs(Math.Sqrt(Math.Pow(heroLastPosition.Item1, 2) + Math.Pow(heroLastPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
+                    double distance = Math.Sqrt(Math.Pow(heroLastPosition.Item1-monsterList[i].PositionX,2)+Math.Pow(heroLastPosition.Item2-monsterList[i].PositionY,2));
+                    //double distance = Math.Abs(Math.Sqrt(Math.Pow(heroLastPosition.Item1, 2) + Math.Pow(heroLastPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
                     if (distance < 3)
                     {
                         sb.AppendFormat("{0} vous a infligé {1} points de dégats.", monsterList[i].Nom, gourdinList[i].Degats);
