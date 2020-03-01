@@ -102,7 +102,7 @@ namespace HarryPotterApi.Controllers
             //x.x;
             GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
 
-            return new { coo = 5 };
+            return new { gameLog = GameLogic.sb.ToString() };
         }
 
        

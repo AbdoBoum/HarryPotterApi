@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
 using HarryPotterApi.Models;
 
 namespace HarryPotterApi.Services
@@ -9,8 +10,11 @@ namespace HarryPotterApi.Services
     public class GameLogic
     {
         private static Random rnd = new Random();
+        public static StringBuilder sb;
         public static void processTour(Hero myHero,Epee myEpee ,List<Monster> monsterList,List<Gourdin> gourdinList,List<Obstacle> obstacleList, Tuple<int,int> heroLastPosition, Tuple<int,int> attackPosition)
         {
+
+              sb = new StringBuilder();
             /*
              1- Update Hero positions
              2- Process the attack
@@ -20,11 +24,10 @@ namespace HarryPotterApi.Services
              6- Check if Hero died
              */
             updateHeroPosition(myHero,heroLastPosition);
-            processAttackOfHero(myHero, myEpee, monsterList, gourdinList, attackPosition);
+            if (attackPosition.Item1 != -1) { 
+                processAttackOfHero(myHero, myEpee, monsterList, gourdinList, attackPosition); 
+            }
             processMonstersTurn(myHero, monsterList, gourdinList, heroLastPosition, obstacleList);
-
-
-
         }
 
         private static void updateHeroPosition(Hero myHero, Tuple<int,int> heroLastPosition)
@@ -40,13 +43,19 @@ namespace HarryPotterApi.Services
                 double distance = Math.Abs( Math.Sqrt(Math.Pow(attackPosition.Item1, 2) + Math.Pow(attackPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
                 if (distance <= myEpee.Portee)
                 {
+                    sb.AppendFormat("Vous avez infligé {1} points de dégats à {2}.",myHero.Nom,myEpee.Degats,monsterList[i].Nom);
+                    sb.AppendLine();
                     if (!monsterList[i].RecevoirDegats(myEpee))
                     {
+                        sb.AppendFormat("{0} a succombé.",monsterList[i].Nom);
+                        sb.AppendLine();
                         /* When a monster dies we should remove it's weapon from the list*/
                         monsterList.RemoveAt(i);
                         gourdinList.RemoveAt(i);
                         
-                        
+
+
+
                     }
                 }
                 
@@ -58,15 +67,21 @@ namespace HarryPotterApi.Services
             int x, y;
             for(int i = 0; i < monsterList.Count; i++)
             {
-                double distance = Math.Abs(Math.Sqrt(Math.Pow(heroLastPosition.Item1, 2) + Math.Pow(heroLastPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
-                if (distance <2)
+                if (gourdinList[i].Degats != 0)
                 {
-                    if (!myHero.RecevoirDegats(gourdinList[i]))
+                    double distance = Math.Abs(Math.Sqrt(Math.Pow(heroLastPosition.Item1, 2) + Math.Pow(heroLastPosition.Item2, 2)) - Math.Sqrt(Math.Pow(monsterList[i].PositionX, 2) + Math.Pow(monsterList[i].PositionY, 2)));
+                    if (distance < 3)
                     {
-                        return true;
+                        sb.AppendFormat("{0} vous a infligé {1} points de dégats.", monsterList[i].Nom, gourdinList[i].Degats);
+                        sb.AppendLine();
+                        if (!myHero.RecevoirDegats(gourdinList[i]))
+                        {
+                            sb.AppendFormat("Vous êtes mort!");
+                            sb.AppendLine();
+                            return true;
+                        }
                     }
                 }
-
                 do
                 {
                     x = monsterList[i].PositionX + rnd.Next(-2, 2);
