@@ -98,6 +98,7 @@ namespace HarryPotterApi.Services
 
         private static bool positionNotSafe(int id,int x,int y,Hero myHero,List<Monster> monsterList,List<Obstacle> obstacleList)
         {
+            if (x < 0 || x > 16 || y < 0 || y > 16) return true;
             if (x==myHero.PositionX && y == myHero.PositionY)
             {
                 return true;
