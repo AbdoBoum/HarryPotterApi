@@ -89,6 +89,13 @@ namespace HarryPotterApi.Controllers
         }
 
        
+        [Route("api/game/saveToDb")]
+        public async Task<IHttpActionResult> Post()
+        {
+            db.GameResult.Add(new GameResult(DateTime.Now, nbTour, myHero.Id, etat));
+            await db.SaveChangesAsync();
+            return Ok();
+        }
 
         [Route("api/game/fintour")]
         public object PostFinTour(JObject request)
@@ -108,15 +115,10 @@ namespace HarryPotterApi.Controllers
 
             //x.x;
             etat = GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
+
+
+            if (etat == 0) nbTour++;
             
-
-            //end of game
-            if(etat != 0)
-            {
-
-                db.GameResult.Add(new GameResult(DateTime.Now, nbTour, myHero.Id, etat));
-            }
-            nbTour++;
             return new { gameLog = GameLogic.sb.ToString() };
 
 
