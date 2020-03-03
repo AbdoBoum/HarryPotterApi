@@ -66,8 +66,8 @@ namespace HarryPotterApi.Controllers
                 return BadRequest();
             }
             monsterList = db.Monsters.ToList();
-
-            foreach(Monster m in monsterList)
+            gourdinList = new List<Gourdin>();
+            foreach (Monster m in monsterList)
             {
                 gourdinList.Add(await db.Gourdins.FindAsync(m.GourdinId));
 
