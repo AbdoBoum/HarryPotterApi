@@ -108,8 +108,18 @@ namespace HarryPotterApi.Controllers
 
             //x.x;
             etat = GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
+            
+
+            //end of game
+            if(etat != 0)
+            {
+
+                db.GameResult.Add(new GameResult(DateTime.Now, nbTour, myHero.Id, etat));
+            }
             nbTour++;
             return new { gameLog = GameLogic.sb.ToString() };
+
+
         }
 
        

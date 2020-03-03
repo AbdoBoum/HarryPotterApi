@@ -27,7 +27,9 @@ namespace HarryPotterApi.Data
 
         public System.Data.Entity.DbSet<HarryPotterApi.Models.Monster> Monsters { get; set; }
 
-        public System.Data.Entity.DbSet<HarryPotterApi.Models.Obstacle> Obstacle { get; set; } 
+        public System.Data.Entity.DbSet<HarryPotterApi.Models.Obstacle> Obstacle { get; set; }
+
+        public System.Data.Entity.DbSet<HarryPotterApi.Models.GameResult> GameResult { get; set; }
 
     }
 }

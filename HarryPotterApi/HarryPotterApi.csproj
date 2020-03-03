@@ -138,9 +138,14 @@
     <Compile Include="Migrations\202002292319284_UpdateHeroesIGAvatar.designer.cs">
       <DependentUpon>202002292319284_UpdateHeroesIGAvatar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003032226499_GameResultTable.cs" />
+    <Compile Include="Migrations\202003032226499_GameResultTable.designer.cs">
+      <DependentUpon>202003032226499_GameResultTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Arme.cs" />
     <Compile Include="Models\Epee.cs" />
+    <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\Gourdin.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Monster.cs" />
@@ -180,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002292319284_UpdateHeroesIGAvatar.resx">
       <DependentUpon>202002292319284_UpdateHeroesIGAvatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003032226499_GameResultTable.resx">
+      <DependentUpon>202003032226499_GameResultTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

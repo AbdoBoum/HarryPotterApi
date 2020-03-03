@@ -19,9 +19,9 @@ namespace HarryPotterApi.Controllers
         private HarryPotterApiContext db = new HarryPotterApiContext();
 
         // GET: api/Epees
-        public IQueryable<Epee> GetEpees()
+        public object GetEpees()
         {
-            return db.Epees;
+            return new { epees = db.Epees.ToList() };
         }
 
         // GET: api/Epees/5
