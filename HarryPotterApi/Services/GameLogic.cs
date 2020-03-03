@@ -11,7 +11,7 @@ namespace HarryPotterApi.Services
     {
         private static Random rnd = new Random();
         public static StringBuilder sb;
-        public static void processTour(Hero myHero,Epee myEpee ,List<Monster> monsterList,List<Gourdin> gourdinList,List<Obstacle> obstacleList, Tuple<int,int> heroLastPosition, Tuple<int,int> attackPosition)
+        public static int processTour(Hero myHero,Epee myEpee ,List<Monster> monsterList,List<Gourdin> gourdinList,List<Obstacle> obstacleList, Tuple<int,int> heroLastPosition, Tuple<int,int> attackPosition)
         {
 
               sb = new StringBuilder();
@@ -27,7 +27,15 @@ namespace HarryPotterApi.Services
             if (attackPosition.Item1 != -1) { 
                 processAttackOfHero(myHero, myEpee, monsterList, gourdinList, attackPosition); 
             }
-            processMonstersTurn(myHero, monsterList, gourdinList, heroLastPosition, obstacleList);
+            if (processMonstersTurn(myHero, monsterList, gourdinList, heroLastPosition, obstacleList)) {
+                return -1;
+            };
+            if(monsterList.Count == 0)
+            {
+                return 1;
+            }
+            return 0;
+
         }
 
         private static void updateHeroPosition(Hero myHero, Tuple<int,int> heroLastPosition)

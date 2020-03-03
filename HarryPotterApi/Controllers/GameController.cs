@@ -23,6 +23,8 @@ namespace HarryPotterApi.Controllers
         static Hero myHero;
         static Epee myEpee;
         static List<Obstacle> obstacleList = new List<Obstacle>();
+        static int nbTour;
+        static int etat; //0 en cours, 1 victoire, -1 défaite
        
 
        
@@ -38,7 +40,10 @@ namespace HarryPotterApi.Controllers
                 epee = myEpee,
                 monsters = monsterList,
                 gourdins = gourdinList,
-                obstacles = obstacleList
+                obstacles = obstacleList,
+                tour = nbTour,
+                status = etat
+
             };
 
 
@@ -47,7 +52,7 @@ namespace HarryPotterApi.Controllers
 
         
         
-
+        //When this method is called, it signals the start of the game
         // POST api/<controller>
         public async Task<IHttpActionResult> Post(JObject request)
         {
@@ -68,6 +73,8 @@ namespace HarryPotterApi.Controllers
 
             }
             obstacleList = db.Obstacle.ToList();
+            nbTour = 1;
+            etat = 0;
             return Ok(myHero);
         }
 
@@ -100,8 +107,8 @@ namespace HarryPotterApi.Controllers
             Tuple<int, int> attackPosition = new Tuple<int, int>(xAttack, yAttack);
 
             //x.x;
-            GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
-
+            etat = GameLogic.processTour(myHero,myEpee, monsterList,gourdinList, obstacleList, heroLastPosition, attackPosition);
+            nbTour++;
             return new { gameLog = GameLogic.sb.ToString() };
         }
 
